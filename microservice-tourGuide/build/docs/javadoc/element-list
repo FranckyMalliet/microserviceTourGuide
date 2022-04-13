@@ -1,0 +1,9 @@
+microserviceTourGuide
+microserviceTourGuide.beans
+microserviceTourGuide.config
+microserviceTourGuide.controllers
+microserviceTourGuide.helper
+microserviceTourGuide.models
+microserviceTourGuide.proxies
+microserviceTourGuide.services
+microserviceTourGuide.tracker
