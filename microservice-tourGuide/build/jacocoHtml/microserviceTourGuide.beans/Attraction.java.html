@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Attraction.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">microserviceTourGuide</a> &gt; <a href="index.source.html" class="el_package">microserviceTourGuide.beans</a> &gt; <span class="el_source">Attraction.java</span></div><h1>Attraction.java</h1><pre class="source lang-java linenums">package microserviceTourGuide.beans;
+
+import java.util.Objects;
+import java.util.UUID;
+
+public class Attraction {
+    private String attractionName;
+    private String city;
+    private String state;
+    private UUID attractionId;
+    private double latitude;
+    private double latitudeToRadian;
+    private double longitude;
+    private double longitudeToRadian;
+
+<span class="fc" id="L16">    public Attraction(String attractionName, String city, String state, double latitude, double longitude) {</span>
+<span class="fc" id="L17">        Objects.requireNonNull(attractionName);</span>
+<span class="fc" id="L18">        Objects.requireNonNull(city);</span>
+<span class="fc" id="L19">        Objects.requireNonNull(state);</span>
+
+<span class="fc" id="L21">        this.attractionName = attractionName;</span>
+<span class="fc" id="L22">        this.city = city;</span>
+<span class="fc" id="L23">        this.state = state;</span>
+<span class="fc" id="L24">        this.attractionId = UUID.randomUUID();</span>
+<span class="fc" id="L25">        this.latitude = latitude;</span>
+<span class="fc" id="L26">        this.longitude = longitude;</span>
+<span class="fc" id="L27">        latitudeToRadian = Math.toRadians(latitude);</span>
+<span class="fc" id="L28">        longitudeToRadian = Math.toRadians(longitude);</span>
+<span class="fc" id="L29">    }</span>
+
+    public String getAttractionName() {
+<span class="nc" id="L32">        return attractionName;</span>
+    }
+
+    public void setAttractionName(String attractionName) {
+<span class="nc" id="L36">        this.attractionName = attractionName;</span>
+<span class="nc" id="L37">    }</span>
+
+    public String getCity() {
+<span class="nc" id="L40">        return city;</span>
+    }
+
+    public void setCity(String city) {
+<span class="nc" id="L44">        this.city = city;</span>
+<span class="nc" id="L45">    }</span>
+
+    public String getState() {
+<span class="nc" id="L48">        return state;</span>
+    }
+
+    public void setState(String state) {
+<span class="nc" id="L52">        this.state = state;</span>
+<span class="nc" id="L53">    }</span>
+
+    public UUID getAttractionId() {
+<span class="nc" id="L56">        return attractionId;</span>
+    }
+
+    public void setAttractionId(UUID attractionId) {
+<span class="fc" id="L60">        this.attractionId = attractionId;</span>
+<span class="fc" id="L61">    }</span>
+
+    public double getLatitude() {
+<span class="nc" id="L64">        return latitude;</span>
+    }
+
+    public void setLatitude(double latitude) {
+<span class="nc" id="L68">        this.latitude = latitude;</span>
+<span class="nc" id="L69">    }</span>
+
+    public double getLongitude() {
+<span class="nc" id="L72">        return longitude;</span>
+    }
+
+    public void setLongitude(double longitude) {
+<span class="nc" id="L76">        this.longitude = longitude;</span>
+<span class="nc" id="L77">    }</span>
+
+    public double getLatitudeToRadian() {
+<span class="fc" id="L80">        return latitudeToRadian;</span>
+    }
+
+    public void setLatitudeToRadian(double latitudeToRadian) {
+<span class="fc" id="L84">        this.latitudeToRadian = latitudeToRadian;</span>
+<span class="fc" id="L85">    }</span>
+
+    public double getLongitudeToRadian() {
+<span class="fc" id="L88">        return longitudeToRadian;</span>
+    }
+
+    public void setLongitudeToRadian(double longitudeToRadian) {
+<span class="fc" id="L92">        this.longitudeToRadian = longitudeToRadian;</span>
+<span class="fc" id="L93">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

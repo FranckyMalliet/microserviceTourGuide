@@ -1,0 +1,55 @@
+version: '3'
+services:
+  tourGuide:
+    image: microservicetourguide
+    container_name: microservicetourguide
+    #network_mode: bridge
+    networks:
+      tourguide:
+        aliases:
+          - "tour-guide"
+    expose:
+      - 15000
+    ports:
+      - "80:80"
+    restart: always
+
+  attraction:
+    image: microserviceattraction
+    container_name: microserviceattraction
+    #network_mode: bridge
+    networks:
+      tourguide:
+        aliases:
+          - "attraction"
+    ports:
+      - "81:80"
+    restart: always
+
+  trip:
+    image: microservicetrip
+    container_name: microservicetrip
+    #network_mode: bridge
+    networks:
+      tourguide:
+        aliases:
+          - "trip"
+    ports:
+      - "82:80"
+    restart: always
+
+  visitedLocation:
+    image: microservicevisitedlocation
+    container_name: microservicevisitedlocation
+    #network_mode: bridge
+    networks:
+      tourguide:
+        aliases:
+          - "visited-location"
+    ports:
+      - "83:80"
+    restart: always
+
+networks:
+  tourguide:
+    external: true

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VisitedLocationController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">microserviceTourGuide</a> &gt; <a href="index.source.html" class="el_package">microserviceTourGuide.controllers</a> &gt; <span class="el_source">VisitedLocationController.java</span></div><h1>VisitedLocationController.java</h1><pre class="source lang-java linenums">package microserviceTourGuide.controllers;
+
+import microserviceTourGuide.beans.VisitedLocation;
+import microserviceTourGuide.helper.InternalTestHelper;
+import microserviceTourGuide.services.UserService;
+import microserviceTourGuide.services.VisitedLocationService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+import java.util.Map;
+
+@RestController
+public class VisitedLocationController {
+
+<span class="fc" id="L21">    private final static Logger logger = LoggerFactory.getLogger(VisitedLocationController.class);</span>
+    private VisitedLocationService visitedLocationService;
+    private UserService userService;
+    private final InternalTestHelper internalTestHelper;
+<span class="fc" id="L25">    private final ObjectMapper mapper = new ObjectMapper();</span>
+
+<span class="fc" id="L27">    public VisitedLocationController(VisitedLocationService visitedLocationService, UserService userService, InternalTestHelper internalTestHelper){</span>
+<span class="fc" id="L28">        this.visitedLocationService = visitedLocationService;</span>
+<span class="fc" id="L29">        this.userService = userService;</span>
+<span class="fc" id="L30">        this.internalTestHelper = internalTestHelper;</span>
+<span class="fc" id="L31">    }</span>
+
+    /**
+     * You need to use the endpoint &quot;/initializeUsers&quot; once before using each of these endpoints
+     */
+
+    @GetMapping(&quot;/getLastVisitedLocation&quot;)
+    public VisitedLocation getLastVisitedLocation(@RequestParam String userName) {
+<span class="nc" id="L39">        VisitedLocation visitedLocation = visitedLocationService.getUserLastVisitedLocation(userService.</span>
+<span class="nc" id="L40">                findUserByUserName(internalTestHelper.getInternalUserMap(), userName));</span>
+<span class="nc" id="L41">        logger.debug(&quot;Retrieving location of a user named : &quot; + userName);</span>
+<span class="nc" id="L42">        return visitedLocation;</span>
+    }
+
+    @GetMapping(&quot;/getAllUsersCurrentVisitedLocations&quot;)
+    public String getAllUsersCurrentVisitedLocations() throws JsonProcessingException {
+<span class="nc" id="L47">        Map&lt;String, List&lt;Double&gt;&gt; usersMostRecentLocations = visitedLocationService.findAllMostRecentUsersVisitedLocations(internalTestHelper.getInternalUserMap());</span>
+
+<span class="nc" id="L49">        logger.debug(&quot;Retrieving all users most recent location&quot;);</span>
+<span class="nc" id="L50">        return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(usersMostRecentLocations);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

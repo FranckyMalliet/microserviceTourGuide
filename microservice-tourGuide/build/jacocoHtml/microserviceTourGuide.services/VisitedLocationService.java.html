@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VisitedLocationService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">microserviceTourGuide</a> &gt; <a href="index.source.html" class="el_package">microserviceTourGuide.services</a> &gt; <span class="el_source">VisitedLocationService.java</span></div><h1>VisitedLocationService.java</h1><pre class="source lang-java linenums">package microserviceTourGuide.services;
+
+import microserviceTourGuide.beans.VisitedLocation;
+import microserviceTourGuide.models.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+import java.util.*;
+
+@Service
+<span class="fc" id="L12">public class VisitedLocationService {</span>
+
+<span class="fc" id="L14">    private final static Logger logger = LoggerFactory.getLogger(VisitedLocationService.class);</span>
+
+    /**
+     * This method use a list of visitedLocation from a user and retrieve the last visitedLocation.
+     * Then, create a visitedLocation and calculate a reward.
+     * @param user
+     * @return a visitedLocation object
+     */
+
+    public VisitedLocation getUserLastVisitedLocation(User user) {
+<span class="fc" id="L24">        VisitedLocation visitedLocation = findTheMostRecentVisitedLocation(user);</span>
+
+<span class="fc" id="L26">        logger.debug(&quot;Retrieve the last visitedLocation&quot; + visitedLocation.getUserId() + &quot; from user : &quot; + user.getUserId());</span>
+<span class="fc" id="L27">        return visitedLocation;</span>
+    }
+
+    /**
+     * This method use a list of user and add the last visitedLocation latitude
+     * and longitude of each user into a map.
+     * @return a map list of double values
+     */
+
+    public Map&lt;String, List&lt;Double&gt;&gt; findAllMostRecentUsersVisitedLocations(List&lt;User&gt; userList){
+<span class="nc" id="L37">        Map&lt;String, List&lt;Double&gt;&gt; usersMostRecentLocations = new HashMap&lt;&gt;();</span>
+
+<span class="nc bnc" id="L39" title="All 2 branches missed.">        for(User user : userList){</span>
+<span class="nc" id="L40">            String userId = String.valueOf(user.getUserId());</span>
+
+<span class="nc" id="L42">            VisitedLocation visitedLocation = findTheMostRecentVisitedLocation(user);</span>
+
+<span class="nc" id="L44">            List&lt;Double&gt; visitedLocationCoordinates = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L45">            visitedLocationCoordinates.add(visitedLocation.getLatitude());</span>
+<span class="nc" id="L46">            visitedLocationCoordinates.add(visitedLocation.getLongitude());</span>
+
+<span class="nc" id="L48">            usersMostRecentLocations.put(userId, visitedLocationCoordinates);</span>
+<span class="nc" id="L49">        }</span>
+
+<span class="nc" id="L51">        return usersMostRecentLocations;</span>
+    }
+
+    /**
+     * This method use a collector to iterate through the list of visitedLocation of a user.
+     * Find the last visitedLocation by his most recent date.
+     * @param user
+     * @return the most recent visitedLocation
+     */
+
+    private VisitedLocation findTheMostRecentVisitedLocation(User user){
+<span class="fc" id="L62">        return Collections.max(user.getVisitedLocation(), Comparator.comparing(VisitedLocation::getTimeVisited));</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
