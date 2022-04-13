@@ -21,27 +21,27 @@ import java.util.UUID;
      */
 
     public User findUserByUserName(List&lt;User&gt; userList, String userName){
-<span class="nc" id="L24">        User userWeAreLookingFor = new User(UUID.randomUUID(), &quot;null&quot;, &quot;null&quot;, &quot;null&quot;);</span>
+<span class="fc" id="L24">        User userWeAreLookingFor = new User(UUID.randomUUID(), &quot;null&quot;, &quot;null&quot;, &quot;null&quot;);</span>
 
         try{
-<span class="nc bnc" id="L27" title="All 2 branches missed.">            for(User user : userList){</span>
-<span class="nc bnc" id="L28" title="All 2 branches missed.">                if(user.getUserName().equals(userName)){</span>
-<span class="nc" id="L29">                    userWeAreLookingFor.setUserId(user.getUserId());</span>
-<span class="nc" id="L30">                    userWeAreLookingFor.setUserName(user.getUserName());</span>
-<span class="nc" id="L31">                    userWeAreLookingFor.setEmailAddress(user.getEmailAddress());</span>
-<span class="nc" id="L32">                    userWeAreLookingFor.setPhoneNumber(user.getPhoneNumber());</span>
-<span class="nc" id="L33">                    userWeAreLookingFor.setLatestLocationTimestamp(user.getLatestLocationTimestamp());</span>
-<span class="nc" id="L34">                    userWeAreLookingFor.setUserPreferences(user.getUserPreferences());</span>
-<span class="nc" id="L35">                    userWeAreLookingFor.setVisitedLocation(user.getVisitedLocation());</span>
-<span class="nc" id="L36">                    userWeAreLookingFor.setUserRewards(user.getUserRewards());</span>
-<span class="nc" id="L37">                    userWeAreLookingFor.setTripDeals(user.getTripDeals());</span>
+<span class="fc bfc" id="L27" title="All 2 branches covered.">            for(User user : userList){</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">                if(user.getUserName().equals(userName)){</span>
+<span class="fc" id="L29">                    userWeAreLookingFor.setUserId(user.getUserId());</span>
+<span class="fc" id="L30">                    userWeAreLookingFor.setUserName(user.getUserName());</span>
+<span class="fc" id="L31">                    userWeAreLookingFor.setEmailAddress(user.getEmailAddress());</span>
+<span class="fc" id="L32">                    userWeAreLookingFor.setPhoneNumber(user.getPhoneNumber());</span>
+<span class="fc" id="L33">                    userWeAreLookingFor.setLatestLocationTimestamp(user.getLatestLocationTimestamp());</span>
+<span class="fc" id="L34">                    userWeAreLookingFor.setUserPreferences(user.getUserPreferences());</span>
+<span class="fc" id="L35">                    userWeAreLookingFor.setVisitedLocation(user.getVisitedLocation());</span>
+<span class="fc" id="L36">                    userWeAreLookingFor.setUserRewards(user.getUserRewards());</span>
+<span class="fc" id="L37">                    userWeAreLookingFor.setTripDeals(user.getTripDeals());</span>
                 }
-<span class="nc" id="L39">            }</span>
+<span class="fc" id="L39">            }</span>
 <span class="nc" id="L40">        } catch(NullPointerException nullPointerException){</span>
 <span class="nc" id="L41">            logger.error(&quot;No user has been found&quot;);</span>
-<span class="nc" id="L42">        }</span>
+<span class="fc" id="L42">        }</span>
 
-<span class="nc" id="L44">        return userWeAreLookingFor;</span>
+<span class="fc" id="L44">        return userWeAreLookingFor;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
