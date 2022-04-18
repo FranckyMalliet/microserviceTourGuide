@@ -31,7 +31,7 @@ This container work on port 82
 docker compose alias : visited-location,
 This container work on port 83
 
-###How to use
+### How to use
 First, create each image with the specific names provided.
 
 Second, use the command docker compose up with the docker-compose.yml in the tourguide project.
